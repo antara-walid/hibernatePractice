@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="3f780d9f-54ed-4779-811e-49c805de8b34" name="@localhost Mapping">
+      <data-sources db="b10953ed-58d9-4a78-ac15-f3f7aa0a1820" />
+      <scope>
+        <node kind="schema" qname="hibernatetest" />
+      </scope>
+    </mapping>
+  </component>
+</project>
