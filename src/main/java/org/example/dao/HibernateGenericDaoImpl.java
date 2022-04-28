@@ -6,24 +6,30 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
-import java.util.AbstractList;
 import java.util.List;
 
-public class HibernateAlienDaoImpl {
+public class HibernateGenericDaoImpl<T> {
     private SessionFactory sf = null;
+
+
+    // we add the attribute boClass because we use it for the method get
+    private Class<T> boClass;
+
 
     // constructor
 
-    public HibernateAlienDaoImpl()
+    public HibernateGenericDaoImpl(Class<T> boClass)
     {
         // we have a unique sessionFactory
         sf = SessionFactoryBuilder.getSessionFactory();
+
+        this.boClass = boClass;
     }
 
     // we try out the CRUD operation starting with create/ save
 
     // save or create
-    public void save(Alien alien)
+    public void save(T obj)
     {
         Session session = null;
         Transaction tx = null;
@@ -36,7 +42,7 @@ public class HibernateAlienDaoImpl {
             tx = session.beginTransaction();
 
             // saving the alien using session object
-            session.save(alien);
+            session.save(obj);
 
             tx.commit();
         }catch (HibernateException ex)
@@ -59,7 +65,7 @@ public class HibernateAlienDaoImpl {
     }
 
     // update methode
-    public void update(Alien alien)
+    public void update(T obj)
     {
         Session session = null;
         Transaction transaction = null;
@@ -70,7 +76,7 @@ public class HibernateAlienDaoImpl {
             // we start a transaction
             transaction = session.beginTransaction();
 
-            session.update(alien);
+            session.update(obj);
 
             // validating the transaction
             transaction.commit();
@@ -99,8 +105,9 @@ public class HibernateAlienDaoImpl {
             session = sf.getCurrentSession();;
             transaction = session.beginTransaction();
 
-            Alien al = (Alien) session.get(Alien.class,id);
-            session.delete(al);
+            T obj = (T) session.get(boClass,id);
+            // we get the object with the id to delete it from db
+            session.delete(obj);
 
             transaction.commit();
         }catch (HibernateException ex)
@@ -120,15 +127,15 @@ public class HibernateAlienDaoImpl {
 
     // read methodes
 
-    public Alien findById(Long id)
+    public T findById(Long id)
     {
         Session session = null;
         Transaction transaction = null;
-        Alien alien = null;
+        T obj = null;
         try{
             session = sf.getCurrentSession();
             transaction = session.beginTransaction();
-            alien = session.get(Alien.class,id);
+            obj = session.get(boClass,id);
             transaction.commit();
         }catch (HibernateException ex){
             if(transaction != null)
@@ -142,17 +149,10 @@ public class HibernateAlienDaoImpl {
                 session.close();
             }
         }
-        return alien;
+        return obj;
     }
 
     // find all
 
-    public List<Alien> findAll(){
-        Session session = null;
-        Transaction transaction = null;
-        List<Alien> list = null;
-
-        return null;
-    }
 
 }
