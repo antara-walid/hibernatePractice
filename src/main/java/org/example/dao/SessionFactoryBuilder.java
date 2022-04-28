@@ -25,7 +25,7 @@ public class SessionFactoryBuilder {
             settings.put("dialect","org.hibernate.dialect.MySQLDialect");
             settings.put("hibernate.connection.url", "jdbc:mysql://localhost:3306/hibernatetest");
             settings.put("hibernate.connection.username", "root");
-            settings.put("hibernate.hbm2ddl.auto", "update");
+            settings.put("hibernate.hbm2ddl.auto", "create");
             settings.put("hibernate.connection.password", "");
             settings.put("hibernate.current_session_context_class", "thread");
             settings.put("hibernate.show_sql", "true");

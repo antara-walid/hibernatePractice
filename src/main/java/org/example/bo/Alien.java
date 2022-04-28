@@ -1,19 +1,15 @@
 package org.example.bo;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity(name = "ALIEN_TAB")
 public class Alien {
     @GeneratedValue
     @Id
     Long aId;
-
-    @Column(name = "nom_alien", length = 50, nullable = false)
-    String aName;
+    @Embedded
+    AlienName aName;
 
     String color;
 
@@ -25,11 +21,11 @@ public class Alien {
         this.aId = aId;
     }
 
-    public String getaName() {
+    public AlienName getaName() {
         return aName;
     }
 
-    public void setaName(String aName) {
+    public void setaName(AlienName aName) {
         this.aName = aName;
     }
 
