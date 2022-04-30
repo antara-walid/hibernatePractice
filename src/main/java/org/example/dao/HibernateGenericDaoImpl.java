@@ -1,12 +1,9 @@
 package org.example.dao;
 
-import org.example.bo.Alien;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-
-import java.util.List;
 
 public class HibernateGenericDaoImpl<T> {
     private SessionFactory sf = null;
@@ -53,8 +50,9 @@ public class HibernateGenericDaoImpl<T> {
                 tx.rollback();
 
                 // displaying the exception
-                throw ex;
+
             }
+            throw ex;
         }finally {
             if(session != null && session.isOpen())
             {

@@ -1,4 +1,4 @@
-package org.example.bo;
+package org.example.bo.exemple1;
 
 
 import javax.persistence.*;

@@ -1,12 +1,13 @@
 package org.example.dao;
 
-import org.example.bo.Alien;
+import org.example.bo.exemple1.Alien;
+import org.example.bo.exemple2.Address;
+import org.example.bo.exemple2.Student;
 import org.hibernate.SessionFactory;
 
 import org.hibernate.boot.Metadata;
 import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
-import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 import java.util.HashMap;
@@ -21,8 +22,8 @@ public class SessionFactoryBuilder {
         {
             // we can use another format of configuration for hibernate using xml
             Map<String, String> settings = new HashMap<>();
-            settings.put("connection.driver_class","com.mysql.jdbc.Driver");
-            settings.put("dialect","org.hibernate.dialect.MySQLDialect");
+            settings.put("connection.driver_class","org.mariadb.jdbc.Driver");
+            settings.put("dialect","org.hibernate.dialect.MariaDB103Dialect");
             settings.put("hibernate.connection.url", "jdbc:mysql://localhost:3306/hibernatetest");
             settings.put("hibernate.connection.username", "root");
             settings.put("hibernate.hbm2ddl.auto", "create");
@@ -34,7 +35,8 @@ public class SessionFactoryBuilder {
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(settings).build();
 
             MetadataSources metadataSources = new MetadataSources(serviceRegistry);
-            metadataSources.addAnnotatedClass(Alien.class);
+            metadataSources.addAnnotatedClass(Student.class);
+            metadataSources.addAnnotatedClass(Address.class);
             Metadata metadata = metadataSources.buildMetadata();
 
             sessionFactory = metadata.getSessionFactoryBuilder().build();
