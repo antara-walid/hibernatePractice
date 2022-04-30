@@ -1,9 +1,6 @@
 package org.example.bo.exemple2;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
@@ -15,6 +12,10 @@ public class Address {
     private Long aId;
 
     private String city;
+
+    // here in OneToOne we can add many useful attributes such as cascade but to prevent creating another foreign key in address table we add mappedBy ...
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "sAdress")
+    private Student student;
 
     public Long getaId() {
         return aId;
