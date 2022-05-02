@@ -2,6 +2,8 @@ package org.example.bo.exemple2;
 
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -16,8 +18,8 @@ public class Student {
     private String firstName;
     private String LastName;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    private Address sAdress;
+    @OneToMany(cascade = CascadeType.ALL ,orphanRemoval = true )
+    private List<Address> sAdress = new ArrayList<>();
 
     public Long getsId() {
         return sId;
@@ -51,11 +53,11 @@ public class Student {
         LastName = lastName;
     }
 
-    public Address getsAdress() {
+    public List<Address> getsAdress() {
         return sAdress;
     }
 
-    public void setsAdress(Address sAdress) {
+    public void setsAdress(List<Address> sAdress) {
         this.sAdress = sAdress;
     }
 

@@ -14,8 +14,7 @@ public class Address {
     private String city;
 
     // here in OneToOne we can add many useful attributes such as cascade but to prevent creating another foreign key in address table we add mappedBy ...
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "sAdress")
-    private Student student;
+
 
     public Long getaId() {
         return aId;

@@ -9,6 +9,9 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Hello world!
  *
@@ -24,10 +27,7 @@ public class App {
         std1.setLastName("antara");
         std1.setCIN("123");
 
-        Student std2 = new Student();
-        std2.setFirstName("bora");
-        std2.setLastName("bora");
-        std2.setCIN("12w3");
+
 
         Address adrs1 = new Address();
         adrs1.setCity("casablanca");
@@ -35,11 +35,15 @@ public class App {
         Address adrs2 = new Address();
         adrs2.setCity("fes");
 
-        std1.setsAdress(adrs1);
-        std2.setsAdress(adrs2);
+        std1.getsAdress().add(adrs1);
+        std1.getsAdress().add(adrs2);
+
+        // adding the addresses to the student
 
         //System.out.println(std2);
-        studentDao.save(std2);
+//        addressDao.save(adrs1);
+//        addressDao.save(adrs2);
+        studentDao.save(std1);
 
     }
 }
