@@ -35,15 +35,14 @@ public class App {
         Address adrs2 = new Address();
         adrs2.setCity("fes");
 
-        std1.getsAdress().add(adrs1);
-        std1.getsAdress().add(adrs2);
+        std1.addAdresse(adrs1);
+        std1.addAdresse(adrs2);
+
 
         // adding the addresses to the student
 
-        //System.out.println(std2);
-//        addressDao.save(adrs1);
-//        addressDao.save(adrs2);
-        studentDao.save(std1);
+
+         studentDao.save(std1);
 
     }
 }

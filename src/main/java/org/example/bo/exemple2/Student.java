@@ -18,7 +18,7 @@ public class Student {
     private String firstName;
     private String LastName;
 
-    @OneToMany(cascade = CascadeType.ALL ,orphanRemoval = true )
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL ,orphanRemoval = true )
     private List<Address> sAdress = new ArrayList<>();
 
     public Long getsId() {
@@ -82,5 +82,10 @@ public class Student {
     @Override
     public int hashCode() {
         return Objects.hash(sId, CIN, firstName, LastName, sAdress);
+    }
+
+    public void addAdresse(Address ad) {
+        sAdress.add(ad);
+        ad.setStudent(this);
     }
 }

@@ -14,8 +14,8 @@ public class Address {
     private String city;
 
     // here in OneToOne we can add many useful attributes such as cascade but to prevent creating another foreign key in address table we add mappedBy ...
-
-
+    @ManyToOne
+    private Student student ;
     public Long getaId() {
         return aId;
     }
@@ -30,6 +30,14 @@ public class Address {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Student getStudent() {
+        return student;
+    }
+
+    public void setStudent(Student student) {
+        this.student = student;
     }
 
     @Override
