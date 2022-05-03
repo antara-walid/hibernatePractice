@@ -1,6 +1,8 @@
 package org.example.bo.exemple2;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -14,8 +16,8 @@ public class Address {
     private String city;
 
     // here in OneToOne we can add many useful attributes such as cascade but to prevent creating another foreign key in address table we add mappedBy ...
-    @ManyToOne
-    private Student student ;
+    @ManyToMany(mappedBy = "sAdress", cascade = CascadeType.ALL )
+    private List<Student> students = new ArrayList<>();
     public Long getaId() {
         return aId;
     }
@@ -32,12 +34,16 @@ public class Address {
         this.city = city;
     }
 
-    public Student getStudent() {
-        return student;
+    public List<Student> getStudent() {
+        return students;
     }
 
-    public void setStudent(Student student) {
-        this.student = student;
+    public void setStudent(List<Student> students) {
+        this.students = students;
+    }
+    public void addStudent(Student std) {
+        students.add(std);
+        std.getsAdress().add(this);
     }
 
     @Override
