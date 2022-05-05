@@ -5,6 +5,7 @@ import org.example.bo.exemple2.Address;
 import org.example.bo.exemple2.Student;
 import org.example.bo.exemple3.Etudiant;
 import org.example.bo.exemple3.Persone;
+import org.example.bo.exemple3.Prof;
 import org.hibernate.SessionFactory;
 
 import org.hibernate.boot.Metadata;
@@ -28,7 +29,7 @@ public class SessionFactoryBuilder {
             settings.put("dialect","org.hibernate.dialect.MariaDB103Dialect");
             settings.put("hibernate.connection.url", "jdbc:mysql://localhost:3306/hibernatetest");
             settings.put("hibernate.connection.username", "root");
-            settings.put("hibernate.hbm2ddl.auto", "update");
+            settings.put("hibernate.hbm2ddl.auto", "create");
             settings.put("hibernate.connection.password", "");
             settings.put("hibernate.current_session_context_class", "thread");
             settings.put("hibernate.show_sql", "true");
@@ -41,6 +42,7 @@ public class SessionFactoryBuilder {
             metadataSources.addAnnotatedClass(Address.class);
             metadataSources.addAnnotatedClass(Etudiant.class);
             metadataSources.addAnnotatedClass(Persone.class);
+            metadataSources.addAnnotatedClass(Prof.class);
             Metadata metadata = metadataSources.buildMetadata();
 
             sessionFactory = metadata.getSessionFactoryBuilder().build();

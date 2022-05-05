@@ -1,14 +1,12 @@
 package org.example.bo.exemple3;
 
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 
-@MappedSuperclass
-// we don t use intety because persone will not have a table in our database
-// so in this case persone should not be associated to other classes
+@Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+// in this case the childs of persone will be placed in a single table and the
+// to differentiate between them will be a discriminator type
 public class Persone {
     @Id
     @GeneratedValue(generator = "increment")
