@@ -3,6 +3,8 @@ package org.example.dao;
 import org.example.bo.exemple1.Alien;
 import org.example.bo.exemple2.Address;
 import org.example.bo.exemple2.Student;
+import org.example.bo.exemple3.Etudiant;
+import org.example.bo.exemple3.Persone;
 import org.hibernate.SessionFactory;
 
 import org.hibernate.boot.Metadata;
@@ -37,6 +39,8 @@ public class SessionFactoryBuilder {
             MetadataSources metadataSources = new MetadataSources(serviceRegistry);
             metadataSources.addAnnotatedClass(Student.class);
             metadataSources.addAnnotatedClass(Address.class);
+            metadataSources.addAnnotatedClass(Etudiant.class);
+            metadataSources.addAnnotatedClass(Persone.class);
             Metadata metadata = metadataSources.buildMetadata();
 
             sessionFactory = metadata.getSessionFactoryBuilder().build();
