@@ -4,9 +4,9 @@ package org.example.bo.exemple3;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-// in this case the childs of persone will be placed in a single table and the
-// to differentiate between them will be a discriminator type
+@Inheritance(strategy = InheritanceType.JOINED)
+// int strategy joined every entity will be mapped to a table
+// the only common attribute between the tables is the id
 public class Persone {
     @Id
     @GeneratedValue(generator = "increment")

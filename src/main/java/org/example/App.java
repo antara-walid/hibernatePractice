@@ -40,6 +40,7 @@ public class App {
         prof1.setCIN("12345");
         prof1.setNUmProf("test");
 
+        // saving
         ProfDao.save(prof1);
         EtudiantDao.save(etd1);
 
