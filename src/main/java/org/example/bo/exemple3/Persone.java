@@ -4,9 +4,8 @@ package org.example.bo.exemple3;
 import javax.persistence.*;
 
 @Entity
-@Inheritance(strategy = InheritanceType.JOINED)
-// int strategy joined every entity will be mapped to a table
-// the only common attribute between the tables is the id
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+
 public class Persone {
     @Id
     @GeneratedValue(generator = "increment")
